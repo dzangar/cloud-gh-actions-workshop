@@ -48,6 +48,6 @@ jobs:
             cd /home/ubuntu/cloud-gh-actions-workshop
             sudo docker stop my-container || true
             sudo docker rm my-container || true
-            sudo docker run -d --name my-container -p 80:80 my-docker-image:latest
+            sudo docker run -d --name my-container -p 80:8080 my-docker-image:latest
             sudo docker system prune -f
           EOF
