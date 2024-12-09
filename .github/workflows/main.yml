@@ -46,8 +46,8 @@ jobs:
           ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
             # Docker commands for deployment
             cd /home/ubuntu/cloud-gh-actions-workshop
-            docker stop my-container || true
-            docker rm my-container || true
-            docker run -d --name my-container -p 80:80 my-docker-image:latest
-            docker system prune -f
+            sudo docker stop my-container || true
+            sudo docker rm my-container || true
+            sudo docker run -d --name my-container -p 80:80 my-docker-image:latest
+            sudo docker system prune -f
           EOF
