@@ -60,9 +60,9 @@ jobs:
             type=ref,event=pr
             type=sha,event=branch,prefix=,suffix=,format=short
       - name: build
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }/cloud-gh-actions-workshop:latest .
+        run: docker build -t dzangar/cloud-gh-actions-workshop:latest .
       - name: push
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/cloud-gh-actions-workshop:latest
+        run: docker push dzangar/cloud-gh-actions-workshop:latest
 
       # - name: build and push docker image to registry
       #   uses: docker/build-push-action@v2
