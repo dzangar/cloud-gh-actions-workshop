@@ -49,6 +49,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}  # Use your Docker Hub username
           password: ${{ secrets.DOCKER_PASSWORD }}    # Use your Docker Hub token
           run: docker login -u $username -p $password
+          
       - name: Generate Docker Metadata
         id: meta
         uses: docker/metadata-action@v4
@@ -69,14 +70,14 @@ jobs:
       #     context: .
       #     push: true
       #     tags: ${{ secrets.DOCKER_USERNAME }}/cloud-gh-actions-workshop:latest
-      # - name: Build and Push Docker Image
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     push: true
-      #     tags: ${{ secrets.DOCKER_USERNAME }}/cloud-gh-actions-workshop:latest  # Replace with your Docker Hub repository name
-      #     labels: ${{ steps.meta.outputs.labels }}
-      #     cache-from: type=gha
-      #     cache-to: type=gha,mode=max
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/cloud-gh-actions-workshop:latest  # Replace with your Docker Hub repository name
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
 
 
