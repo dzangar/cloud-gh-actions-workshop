@@ -75,12 +75,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+  
+      - name: Set up Docker (on self-hosted runner)
+        run: |
+          sudo apt-get update
+          sudo apt-get install docker.io
+  
+      - name: Pull Docker Image
+        run: |
+          # Pull the latest image from Docker Hub
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cloud-gh-actions-workshop:latest
+  
       - name: Deploy Docker Container
         run: |
+          # Gracefully stop and remove the old container if exists
           sudo docker stop my-container || true
           sudo docker rm my-container || true
+          
+          # Run the new container
           sudo docker run -d --name my-container -p 80:8080 ${{ secrets.DOCKER_USERNAME }}/cloud-gh-actions-workshop:latest
+  
+          # Clean up unused Docker resources
           sudo docker system prune -f
 
 
