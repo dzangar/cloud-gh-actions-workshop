@@ -48,8 +48,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}  # Use your Docker Hub username
           password: ${{ secrets.DOCKER_PASSWORD }}    # Use your Docker Hub token
-          registry: index.docker.io  # Docker Hub registry URL (default)
-
+          run: docker login -u $username -p $password
       - name: Generate Docker Metadata
         id: meta
         uses: docker/metadata-action@v4
@@ -59,10 +58,10 @@ jobs:
             type=ref,event=tag
             type=ref,event=pr
             type=sha,event=branch,prefix=,suffix=,format=short
-      - name: build
-        run: docker build -t dzangar/cloud-gh-actions-workshop:latest .
-      - name: push
-        run: docker push dzangar/cloud-gh-actions-workshop:latest
+      # - name: build
+      #   run: docker build -t dzangar/cloud-gh-actions-workshop:latest .
+      # - name: push
+      #   run: docker push dzangar/cloud-gh-actions-workshop:latest
 
       # - name: build and push docker image to registry
       #   uses: docker/build-push-action@v2
