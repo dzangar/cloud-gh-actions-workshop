@@ -76,11 +76,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
   
-      - name: Set up Docker (on self-hosted runner)
-        run: |
-          sudo apt-get update
-          sudo apt-get install docker.io
-  
       - name: Pull Docker Image
         run: |
           # Pull the latest image from Docker Hub
